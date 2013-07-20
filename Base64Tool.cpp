@@ -252,7 +252,7 @@ INT_PTR CALLBACK DialogProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			/* initialise the encoder state */
 			base64_init_encodestate(&s);
 			/* gather data from the input and send it to the output */
-			cnt = base64_encode_block(src_content, read_len, c, &s);
+			cnt = base64_encode_block(src_content, strlen(src_content), c, &s);
 			c += cnt;
 			/* since we have encoded the entire input string, we know that 
 			   there is no more input data; finalise the encoding */
@@ -309,7 +309,7 @@ INT_PTR CALLBACK DialogProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			/* initialise the decoder state */
 			base64_init_decodestate(&ds);
 			/* decode the input data */
-			cnt = base64_decode_block(src_content, src_len, c, &ds);
+			cnt = base64_decode_block(src_content, strlen(src_content), c, &ds);
 			c += cnt;
 			/* note: there is no base64_decode_blockend! */
 			/*---------- STOP DECODING  ----------*/
